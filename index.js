@@ -1,3 +1,5 @@
+const readlineSync = require("readline-sync");
+
 function strip(aString) {
   var splitString = "";
 
@@ -374,7 +376,51 @@ function decryptPlayFairCipher(text, key) {
 // var key = readlineSync.question("> Enter the key: ");
 // var text = readlineSync.question("> Enter string you want to encrypt? ");
 //loadmatrix();
-console.log(
-  ">String after encrypt: ",
-  decryptPlayFairCipher("flidghhnym", "kamehara")
-);
+// console.log(
+//   ">String after encrypt: ",
+//   decryptPlayFairCipher("flidghhnym", "kamehara")
+// );
+
+function showMenu() {
+  console.log("1> Encrypt string with PlayFair-Cipher");
+  console.log("2> Decrypt string with PlayFair-Cipher");
+  console.log("3> End Program");
+}
+function main() {
+  showMenu();
+  let choose = readlineSync.question("> Choose your option? ");
+  switch (parseInt(choose)) {
+    case 1:
+      let plaintext = readlineSync.question(
+        "> Enter plantext you want to encrypt? "
+      );
+      var key = readlineSync.question(
+        "> Enter 'k number' you want to encrypt? "
+      );
+      console.log("> Your Ciphertext: ", encryptPlayFairCipher(plaintext, key));
+      console.log("\n \n");
+      console.log(
+        "============================================================="
+      );
+      main();
+      break;
+    case 2:
+      let ciphertext = readlineSync.question(
+        "> Enter ciphertext you want to decrypt? "
+      );
+      var key = readlineSync.question("> Enter 'k number' ");
+      console.log("> Your plaintext: ", decryptPlayFairCipher(ciphertext, key));
+      console.log("\n \n");
+      console.log(
+        "============================================================="
+      );
+      main();
+      break;
+    case 3:
+      console.log("End Program");
+      break;
+  }
+}
+
+main();
+//
